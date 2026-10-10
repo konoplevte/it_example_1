@@ -1,4 +1,6 @@
 from rich import print
+from .cli import run
+
 
 def main() -> None:
-    print("Hello from [bold]taskagent![/bold]")
+    run()
