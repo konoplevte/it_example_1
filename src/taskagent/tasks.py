@@ -1,20 +1,21 @@
 tasks: list = []
 
+
 def add_task(title: str) -> None:
-    tasks.append({
-        "title": title,
-        "done": False
-    })
+    tasks.append({"title": title, "done": False})
+
 
 def list_tasks() -> str:
     result = ""
     for i, task in enumerate(tasks):
-        result += f"{i + 1}. [{'X' if task["done"] else ' '}] {task["title"]}\n"
+        result += f"{i + 1}. [{'X' if task['done'] else ' '}] {task['title']}\n"
 
-    return result    
+    return result
+
 
 def done_task(idx: int) -> None:
     tasks[idx]["done"] = True
+
 
 def get_help() -> str:
     return """
