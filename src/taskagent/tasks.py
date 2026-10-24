@@ -1,9 +1,11 @@
-tasks: list = []
+from .file_storage import save_storage, load_storage
+
+tasks: list = load_storage()
 
 
 def add_task(title: str) -> None:
     tasks.append({"title": title, "done": False})
-
+    save_storage(tasks)
 
 def list_tasks() -> str:
     result = ""
