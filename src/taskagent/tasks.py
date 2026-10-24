@@ -1,23 +1,31 @@
-from .file_storage import save_storage, load_storage
+_tasks: list[dict] = []
 
-tasks: list = load_storage()
+def init_tasks(tasks: list[dict]) -> None:
+    global _tasks
+    _tasks = tasks
 
+def get_tasks() -> list[dict]:
+    return _tasks
 
-def add_task(title: str) -> None:
-    tasks.append({"title": title, "done": False})
-    save_storage(tasks)
+def add_task(name: str) -> None:
+    _tasks.append({"name": name, "done": False})
 
 def list_tasks() -> str:
     result = ""
-    for i, task in enumerate(tasks):
-        result += f"{i + 1}. [{'X' if task['done'] else ' '}] {task['title']}\n"
+    for i, task in enumerate(_tasks):
+        result += f"{i + 1}. [{'X' if task['done'] else ' '}] {task['name']}\n"
 
     return result
 
 
 def done_task(idx: int) -> None:
-    tasks[idx]["done"] = True
+    _tasks[idx]["done"] = True
 
+def delete_task(idx: int) -> dict | None:
+    try:
+        return _tasks.pop(idx)
+    except IndexError:
+        return None
 
 def get_help() -> str:
     return """
